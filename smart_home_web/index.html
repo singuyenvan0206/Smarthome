@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Smart Home Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🏠 Smart Home Dashboard</h1>
+
+    <div class="controls">
+      <h2>Thiết bị điều khiển</h2>
+      <button id="ledBtn" onclick="toggleLED()">--</button>
+      <button id="servo1Btn" onclick="toggleServo('servo1')">--</button>
+      <button id="servo2Btn" onclick="toggleServo('servo2')">--</button>
+      <button id="autoBtn" onclick="toggleAuto()">Tự động Servo2: --</button>
+    </div>
+
+    <div class="auto-servo2-control">
+      <h2>Cài đặt tự động quạt</h2>
+      <label for="thresholdTemp">Ngưỡng nhiệt độ (°C):</label>
+      <input type="number" id="thresholdTemp" placeholder="VD: 27" />
+      <button onclick="updateThreshold()">Cập nhật</button>
+      <p id="thresholdMsg"></p>
+    </div>
+
+    <div class="sensors">
+      <h2>Thông số cảm biến</h2>
+      <p>Nhiệt độ: <span id="temp">--</span> °C</p>
+      <p>Độ ẩm: <span id="humi">--</span> %</p>
+    </div>
+
+    <div class="log">
+  <h2>Lịch sử mở cửa</h2>
+  <table id="logTable">
+    <thead><tr><th>#</th><th>Thời gian</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div style="margin-top: 10px;">
+    <button onclick="prevPage()">⬅️ Trước</button>
+    <span id="pageInfo">Trang 1</span>
+    <button onclick="nextPage()">➡️ Sau</button>
+    <button style="float: right;" onclick="clearLog()">🗑️ Xóa lịch sử</button>
+  </div>
+</div>
+
+    <div class="nav-buttons">
+      <button onclick="location.href='change_password.html'">🔐 Đổi mật khẩu</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

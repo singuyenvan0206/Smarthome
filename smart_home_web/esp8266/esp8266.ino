@@ -57,25 +57,25 @@ void setup() {
 
 void loop() {
   // 1. Cảm biến
-  float thresholdTemp = 27.0;
+  static float lastThreshold = -1;  // lưu threshold cũ
+
+float thresholdTemp = 27.0;
 if (Firebase.getFloat(fbdo, "/config/servo2_threshold")) {
   thresholdTemp = fbdo.floatData();
+}
 
-  // Nếu threshold mới khác với trước đó thì xử lý ngay
-  if (thresholdTemp != lastThresholdTemp && autoControlServo2 && Firebase.ready()) {
-    float tNow = dht.readTemperature();
-    if (!isnan(tNow)) {
-      if (tNow > thresholdTemp && lastServo2Cmd != "AUTO_OPEN") {
-        unoSerial.println("SERVO2_OPEN");
-        lastServo2Cmd = "AUTO_OPEN";
-      } else if (tNow <= thresholdTemp && lastServo2Cmd != "AUTO_CLOSE") {
-        unoSerial.println("SERVO2_CLOSE");
-        lastServo2Cmd = "AUTO_CLOSE";
-      }
-    }
-    lastThresholdTemp = thresholdTemp;
+// Nếu ngưỡng thay đổi và đang bật auto thì so sánh lại ngay
+if (autoControlServo2 && thresholdTemp != lastThreshold) {
+  if (t > thresholdTemp) {
+    unoSerial.println("SERVO2_OPEN");
+    lastServo2Cmd = "AUTO_OPEN";
+  } else {
+    unoSerial.println("SERVO2_CLOSE");
+    lastServo2Cmd = "AUTO_CLOSE";
   }
 }
+lastThreshold = thresholdTemp;
+
 
 
   float t = dht.readTemperature();

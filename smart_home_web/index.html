@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Smart Home Dashboard</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- 🏠 Main Dashboard -->
-  <div id="appSection" class="container" style="display:none;">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+  <div class="container">
     <h1>🏠 Smart Home Dashboard</h1>
 
     <div class="controls">
@@ -33,26 +35,24 @@
     </div>
 
     <div class="log">
-      <h2>Lịch sử mở cửa</h2>
-      <table id="logTable">
-        <thead><tr><th>#</th><th>Thời gian</th></tr></thead>
-        <tbody></tbody>
-      </table>
-      <div style="margin-top: 10px;">
-        <button onclick="prevPage()">⬅️ Trước</button>
-        <span id="pageInfo">Trang 1</span>
-        <button onclick="nextPage()">➡️ Sau</button>
-        <button style="float: right;" onclick="clearLog()">🗑️ Xóa lịch sử</button>
-      </div>
-    </div>
+  <h2>Lịch sử mở cửa</h2>
+  <table id="logTable">
+    <thead><tr><th>#</th><th>Thời gian</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div style="margin-top: 10px;">
+    <button onclick="prevPage()">⬅️ Trước</button>
+    <span id="pageInfo">Trang 1</span>
+    <button onclick="nextPage()">➡️ Sau</button>
+    <button style="float: right;" onclick="clearLog()">🗑️ Xóa lịch sử</button>
+  </div>
+</div>
 
     <div class="nav-buttons">
       <button onclick="location.href='change_password.html'">🔐 Đổi mật khẩu</button>
-      <button onclick="logout()" style="float: right;">🚪 Đăng xuất</button>
     </div>
   </div>
 
-  <!-- App logic -->
   <script src="app.js"></script>
 </body>
 </html>

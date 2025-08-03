@@ -6,24 +6,6 @@
   <title>Smart Home Dashboard</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-</head>
-<body>
-  <!-- 🔐 Login Section -->
-  <div id="loginSection" class="container">
-    <h2>Đăng nhập để vào hệ thống</h2>
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Mật khẩu" />
-    <button onclick="login()">Đăng nhập</button>
-    <p id="loginError" style="color:red;"></p>
-    <button onclick="resetPassword()">Quên mật khẩu?</button>
-    <p id="resetMsg" style="color: green;"></p>
-
-  </div>
-
   <!-- 🏠 Main Dashboard -->
   <div id="appSection" class="container" style="display:none;">
     <h1>🏠 Smart Home Dashboard</h1>

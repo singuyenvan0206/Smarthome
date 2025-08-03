@@ -5,11 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Smart Home Dashboard</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 </head>
 <body>
-  <div class="container">
+  <!-- 🔐 Login Section -->
+  <div id="loginSection" class="container">
+    <h2>Đăng nhập để vào hệ thống</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Mật khẩu" />
+    <button onclick="login()">Đăng nhập</button>
+    <p id="loginError" style="color:red;"></p>
+    <button onclick="resetPassword()">Quên mật khẩu?</button>
+    <p id="resetMsg" style="color: green;"></p>
+
+  </div>
+
+  <!-- 🏠 Main Dashboard -->
+  <div id="appSection" class="container" style="display:none;">
     <h1>🏠 Smart Home Dashboard</h1>
 
     <div class="controls">
@@ -35,24 +51,26 @@
     </div>
 
     <div class="log">
-  <h2>Lịch sử mở cửa</h2>
-  <table id="logTable">
-    <thead><tr><th>#</th><th>Thời gian</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div style="margin-top: 10px;">
-    <button onclick="prevPage()">⬅️ Trước</button>
-    <span id="pageInfo">Trang 1</span>
-    <button onclick="nextPage()">➡️ Sau</button>
-    <button style="float: right;" onclick="clearLog()">🗑️ Xóa lịch sử</button>
-  </div>
-</div>
+      <h2>Lịch sử mở cửa</h2>
+      <table id="logTable">
+        <thead><tr><th>#</th><th>Thời gian</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div style="margin-top: 10px;">
+        <button onclick="prevPage()">⬅️ Trước</button>
+        <span id="pageInfo">Trang 1</span>
+        <button onclick="nextPage()">➡️ Sau</button>
+        <button style="float: right;" onclick="clearLog()">🗑️ Xóa lịch sử</button>
+      </div>
+    </div>
 
     <div class="nav-buttons">
       <button onclick="location.href='change_password.html'">🔐 Đổi mật khẩu</button>
+      <button onclick="logout()" style="float: right;">🚪 Đăng xuất</button>
     </div>
   </div>
 
+  <!-- App logic -->
   <script src="app.js"></script>
 </body>
 </html>
